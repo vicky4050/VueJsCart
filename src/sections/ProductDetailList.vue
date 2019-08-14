@@ -37,6 +37,7 @@
 </template>
 
 <script>
+
 import {db} from '../firebase';
 
 
