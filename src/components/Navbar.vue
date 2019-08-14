@@ -24,14 +24,18 @@
           <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <a class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#login">Get Start</a>
-            <a class="btn btn-outline-info border-0 mx-2 my-2 my-sm-0" data-toggle="modal" data-target="#miniCart">
-              <i class="fas fa-cart-plus"></i>
+            
+            
+            <a class="btn  border-0 mx-2 my-2 my-sm-0" data-toggle="modal" data-target="#miniCart">
+              
+              <span class="fa-stack fa-2x has-badge" :data-count="cartCount">
+                <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                <i style="" class="fa fa-shopping-cart fa-stack-2x red-cart"></i>
+              </span>
             </a>
           </form>
         </div>
-
      </div>
-
 </nav>
     
   </div>
@@ -42,6 +46,11 @@ export default {
   name: "Navbar",
   props: {
     msg: String
+  },
+  computed:{
+    cartCount: function() {        
+      return this.$store.state.cart.length;
+    }
   },
   components:{}
 };
@@ -57,6 +66,32 @@ export default {
       background-color: #fff !important;
     }
 
+    $shopping-cart-red: rgb(93, 128, 113);
+
+    .fa-stack[data-count]:after{
+      position:absolute;
+      right:0%;
+      top:0%;
+      content: attr(data-count);
+      font-size:40%;
+      padding:.6em;
+      border-radius:999px;
+      line-height:.75em;
+      color: white;
+      color:$shopping-cart-red;
+      text-align:center;
+      min-width:2em;
+      font-weight:bold;
+      background: white;
+      border-style:solid;
+    }
+    .fa-circle {
+      color:$shopping-cart-red;      
+    }
+
+    .red-cart {
+      color:$shopping-cart-red; background:white;
+    }
    }
 
 </style>
